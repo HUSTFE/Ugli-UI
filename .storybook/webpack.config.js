@@ -7,13 +7,14 @@
 // to "React Create App". This only has babel loader to load JavaScript.
 const path = require('path')
 const fs = require('fs')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const appDirectory = fs.realpathSync(process.cwd())
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
 
 module.exports = {
   plugins: [
-    // your custom plugins
+    new ExtractTextPlugin({ filename: 'styles.css', allChunks: true }),
   ],
   module: {
     rules: [{
@@ -28,16 +29,22 @@ module.exports = {
       },
     }, {
       test: /\.sass$/,
-      use: [
-        { loader: 'style-loader' },
-        { loader: 'css-loader' },
-        {
-          loader: 'sass-loader',
-          options: {
-            include: resolveApp('src/style')
+      include: resolveApp('src/style'),
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: true,
+              importLoaders: 2,
+              localIdentName: '[name]__[local]___[hash:base64:5]'
+            }
           },
-        }
-      ],
+          'sass-loader'
+        ]
+      })
     }],
   },
   resolve: {
