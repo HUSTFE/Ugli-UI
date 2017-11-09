@@ -37,15 +37,17 @@ const eslintrc = {
     'consistent-return': 0,
     'no-redeclare': 0,
     'react/require-extension': 0,
+    'jsx-a11y/accessible-emoji': 0,
     'jsx-a11y/no-static-element-interactions': 0,
     'jsx-a11y/anchor-has-content': 0,
     'jsx-a11y/click-events-have-key-events': 0,
     'jsx-a11y/anchor-is-valid': 0,
     'react/no-danger': 0,
-    'comma-dangle': ['error', 'never'],
+    'comma-dangle': ['error', 'always-multiline'],
     'function-paren-newline': 0,
     'object-curly-newline': 0,
     'no-restricted-globals': 0,
+    'semi': ['error', 'never']
   },
 };
 
