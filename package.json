@@ -9,7 +9,10 @@
     "roots": [
       "<rootDir>/src"
     ],
-    "moduleFileExtensions": ["js", "jsx"],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
     "testEnvironment": "node",
     "moduleNameMapper": {
       "^@shared[/](.+)": "<rootDir>/src/components/shared/$1",
@@ -18,9 +21,11 @@
     }
   },
   "dependencies": {
+    "art-template": "^4.12.2",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "yargs": "^10.0.3"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.14",
@@ -53,6 +58,7 @@
     "start": "start-storybook -p 6006",
     "storybook": "start-storybook -p 6006",
     "build": "echo \"Error: Unable to build now!\" && exit 1",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "new": "node ./scripts/createNew.js"
   }
 }

@@ -1,0 +1,10 @@
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
+import styles from '@style/{{name}}/index.sass'
+
+class {{name}} extends Component {
+
+}
+
+export default {{name}}
