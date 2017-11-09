@@ -1,26 +1,42 @@
-import React from 'react'
-import style from 'style/Indicator/index.sass'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-class Spinner extends React.Component {
+import { warning } from '@shared/warning'
+import styles from '@style/Indicator/index.sass'
+import { computeSize, validateSize } from '@shared/size'
+
+class Spinner extends Component {
+  static propTypes = {
+    color: PropTypes.string,
+    size: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    style: PropTypes.shape(),
+  }
   static defaultProps = {
     color: 'aqua',
     size: '16',
+    style: {},
   }
-  computeSize = () => `${this.props.size}px`
-
+  componentWillReceiveProps({ size }) {
+    warning(validateSize(size), `Bad size ${size}`)
+  }
   render() {
-    const size = this.computeSize()
-    const { color } = this.props
+    const { color, size, style, ...other } = this.props
+    const sizeComputed = computeSize(size)
     return (
       <div
-        className={style['ugli-spinner']}
+        className={styles['ugli-spinner']}
         style={{
           borderTopColor: color,
           borderLeftColor: color,
           borderBottomColor: color,
-          height: size,
-          width: size,
+          height: sizeComputed,
+          width: sizeComputed,
+          ...style,
         }}
+        {...other}
       />
     )
   }
