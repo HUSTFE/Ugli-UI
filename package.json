@@ -48,7 +48,9 @@
     "lint": "eslint src --ext '.js'",
     "test": "jest",
     "authors": "git log --format='%aN <%aE>' | sort -u | grep -v 'users.noreply.github.com' > AUTHORS.txt",
+    "start": "start-storybook -p 6006",
     "storybook": "start-storybook -p 6006",
+    "build": "echo \"Error: Unable to build now!\" && exit 1",
     "build-storybook": "build-storybook"
   }
 }
