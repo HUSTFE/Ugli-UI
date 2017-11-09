@@ -1,5 +1,5 @@
 import React from 'react'
-import 'style/Indicator/index.sass'
+import style from 'style/Indicator/index.sass'
 
 class Spinner extends React.Component {
   static defaultProps = {
@@ -13,7 +13,7 @@ class Spinner extends React.Component {
     const { color } = this.props
     return (
       <div
-        className="ugli-spinner"
+        className={style['ugli-spinner']}
         style={{
           borderTopColor: color,
           borderLeftColor: color,
