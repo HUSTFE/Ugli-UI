@@ -1,17 +1,13 @@
 import React from 'react'
 
 import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions'
-import { linkTo } from '@storybook/addon-links'
+// import { action } from '@storybook/addon-actions'
+// import { linkTo } from '@storybook/addon-links'
 
-import { Button, Welcome } from '@storybook/react/demo'
 import Spinner from '../src/components/react/Indicator'
-
-storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />)
-
-storiesOf('Button', module)
-  .add('with text', () => <Button onClick={action('clicked')}>Hello Button</Button>)
-  .add('with some emoji', () => <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>)
 
 storiesOf('Spinner', module)
   .add('default', () => <Spinner />)
+  .add('huge and pink', () => <Spinner size="64" color="#FA1C86" />)
+  .add('huge and pink with wider border', () => <Spinner size={64} color="#FA1C86" style={{ borderWidth: '8px' }} />)
+  .add('with id', () => <Spinner id="withID" />)

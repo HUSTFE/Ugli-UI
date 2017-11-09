@@ -53,7 +53,8 @@ module.exports = {
     ],
     extensions: ['.js', '.jsx', '.sass'],
     alias: {
-      'style': resolveApp('src/style')
+      '@style': resolveApp('src/style'),
+      '@shared': resolveApp('src/components/shared'),
     },
   },
 }
