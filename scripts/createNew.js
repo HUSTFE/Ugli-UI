@@ -36,11 +36,11 @@ const render = c => (info) => {
   // we need function writeWith, so can't put this outside.
   const createFileGroup = (inputDir, outputDir, template) => {
     const [iDirPath, oDirPath] = [inputDir, outputDir].map(rawPath => path.resolve(rawPath))
-    return withLog(`Dir ${oDirPath}`)(() => mkdir(oDirPath))
+    return withLog(`Dir: ${oDirPath}`)(() => mkdir(oDirPath))
       && template.reduce((acc, filename) => {
         const [iFile, oFile] = readOneStringOrTwo(filename)
         const [iPath, oPath] = [path.resolve(iDirPath, iFile), path.resolve(oDirPath, oFile)]
-        return withLog(`File ${oPath}`)(
+        return withLog(`File: ${oPath}`)(
           () => (writeWith(iPath)(oPath) && acc)
         )
       }, true)
