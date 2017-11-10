@@ -1,13 +1,23 @@
 {
   "base": "./src/components/react/",
-  "dir": [
-    "/",
-    "/__tests__",
-    "/__tests__/__snapshots__"
-  ],
-  "file": [
-    ["/index.art", "/index.js"],
-    ["/__tests__/index.art", "/__tests__/index.js"],
-    ["/__tests__/__snapshots__/index.art.snap", "/__tests__/__snapshots__/index.js.snap"]
+  "files": [
+    {
+      "dir": "/",
+      "template": [
+        ["index.art", "index.js"]
+      ]
+    },
+    {
+      "dir": ["/__tests__", "/__tests__"],
+      "template": [
+        ["index.art", "index.js"]
+      ]
+    },
+    {
+      "dir": "/__tests__/__snapshots__",
+      "template": [
+        ["index.art.snap", "index.js"]
+      ]
+    }
   ]
 }
