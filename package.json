@@ -21,13 +21,13 @@
     }
   },
   "dependencies": {
-    "art-template": "^4.12.2",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0",
-    "yargs": "^10.0.3"
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
+    "yargs": "^10.0.3",
+    "art-template": "^4.12.2",
     "@storybook/addon-actions": "^3.2.14",
     "@storybook/addon-links": "^3.2.14",
     "@storybook/react": "^3.2.14",
