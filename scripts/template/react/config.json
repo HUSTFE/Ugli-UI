@@ -16,7 +16,6 @@
     {
       "dir": "/__tests__/__snapshots__",
       "template": [
-        ["index.art.snap", "index.js"]
       ]
     }
   ]

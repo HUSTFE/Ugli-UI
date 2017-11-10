@@ -1,10 +1,13 @@
+/* eslint-disable */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import styles from '@style/{{name}}/index.sass'
 
 class {{name}} extends Component {
-
+  render() {
+    return <div>{{name}}</div>
+  }
 }
 
 export default {{name}}
