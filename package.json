@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "yargs": "^10.0.3",
+    "chalk": "^2.3.0",
     "art-template": "^4.12.2",
     "@storybook/addon-actions": "^3.2.14",
     "@storybook/addon-links": "^3.2.14",
