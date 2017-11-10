@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { warning } from '@shared/warning'
 import styles from '@style/Indicator/index.sass'
+import { warning } from '@shared/warning'
 import { computeSize, validateSize } from '@shared/size'
 
 class Spinner extends Component {
