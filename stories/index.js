@@ -6,6 +6,7 @@ import { storiesOf } from '@storybook/react'
 
 import Spinner from '../src/components/react/Indicator'
 import Button from '../src/components/react/Button/index'
+import Swipe from '../src/components/react/Swipe'
 
 storiesOf('Spinner', module)
   .add('default', () => <Spinner />)
@@ -15,3 +16,7 @@ storiesOf('Spinner', module)
 
 storiesOf('Button', module)
   .add('default', () => <Button text="Button" />)
+
+// Swipe Component
+storiesOf('Swipe', module)
+  .add('default', () => <Swipe />)

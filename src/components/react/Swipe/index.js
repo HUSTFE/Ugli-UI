@@ -14,7 +14,7 @@ class Swipe extends Component {
     // size: '16',
   }
   render() {
-    return (<div />)
+    return (<div>This is Swipe component.</div>)
   }
 }
 
