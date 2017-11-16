@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 // import styles from '@style/Swipe/index.sass'
 
-class Swipe extends Component {
+class Swiper extends Component {
   static propTypes = {
     // size: PropTypes.oneOfType([
     //   PropTypes.string,
@@ -14,8 +14,8 @@ class Swipe extends Component {
     // size: '16',
   }
   render() {
-    return (<div>This is Swipe component.</div>)
+    return (<div>This is Swiper component.</div>)
   }
 }
 
-export default Swipe
+export default Swiper
