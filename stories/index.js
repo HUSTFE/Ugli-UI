@@ -4,12 +4,12 @@ import { storiesOf } from '@storybook/react'
 // import { action } from '@storybook/addon-actions'
 // import { linkTo } from '@storybook/addon-links'
 
-import Spinner from '../src/components/react/Indicator'
+import { Spinner } from '../src/components/react/Indicator'
 import Button from '../src/components/react/Button/index'
 import Swipe from '../src/components/react/Swiper'
 import Calendar from '../src/components/react/Calendar/index'
 
-storiesOf('Spinner', module)
+storiesOf('Indicator/Default(Spinner)', module)
   .add('default', () => <Spinner />)
   .add('huge and pink', () => <Spinner size="64" color="#FA1C86" />)
   .add('huge and pink with wider border', () => <Spinner size={64} color="#FA1C86" style={{ borderWidth: '8px' }} />)
