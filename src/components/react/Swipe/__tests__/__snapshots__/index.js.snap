@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Swipe snake spinner render without crash 1`] = `
+exports[`Swipe component render without crash 1`] = `
 <div>
   This is Swipe component.
 </div>
