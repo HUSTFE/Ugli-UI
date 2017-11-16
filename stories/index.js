@@ -6,7 +6,7 @@ import { storiesOf } from '@storybook/react'
 
 import Spinner from '../src/components/react/Indicator'
 import Button from '../src/components/react/Button/index'
-import Swipe from '../src/components/react/Swipe'
+import Swipe from '../src/components/react/Swiper'
 import Calendar from '../src/components/react/Calendar/index'
 
 storiesOf('Spinner', module)
