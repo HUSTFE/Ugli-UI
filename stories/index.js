@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 // import { action } from '@storybook/addon-actions'
 // import { linkTo } from '@storybook/addon-links'
 
-import { Spinner } from '../src/components/react/Indicator'
+import Spinner from '../src/components/react/Indicator'
 import Button from '../src/components/react/Button/index'
 import Swipe from '../src/components/react/Swiper'
 import Calendar from '../src/components/react/Calendar/index'
