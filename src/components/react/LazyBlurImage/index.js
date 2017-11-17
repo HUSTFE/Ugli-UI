@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import VisibilityObserver from '../../shared/VisibilityObserver'
-
 import styles from '@style/LazyBlurImage/index.sass'
+
+import VisibilityObserver from '../../shared/VisibilityObserver'
 
 class LazyBlurImage extends Component {
   static propTypes = {
@@ -64,7 +64,7 @@ class LazyBlurImage extends Component {
 
   state = {
     containerWidth: undefined,
-    containerHeight: undefined,
+    // containerHeight: undefined,
     thumbImageLoaded: false,
     imageLoaded: false,
   }
@@ -86,7 +86,7 @@ class LazyBlurImage extends Component {
       ele.onload = () => {
         this.setState({
           containerWidth: this.containerEle.clientWidth,
-          containerHeight: this.containerEle.clientHeight,
+          // containerHeight: this.containerEle.clientHeight,
 
           // When lazy is set to false(default), `thumbImageLoaded`
           // will be true just after thumb image load.
@@ -165,8 +165,8 @@ class LazyBlurImage extends Component {
             style={{
               // Before thumb `onload`, set its size to 100% * auto
               // can make it fit just well in div wrapper.
-              width: this.state.containerWidth || '100%',
-              height: this.state.containerHeight || 'auto',
+              width: '100%',
+              height: 'auto',
 
               // use visibility to prevent non-working transition
               visibility: this.state.imageLoaded ? undefined : 'hidden',
@@ -193,23 +193,25 @@ class LazyBlurImage extends Component {
    */
   updateSize(newWidth, newHeight) {
     this.setState({
-      containerHeight: newWidth || this.containerEle.clientHeight,
-      containerWidth: newHeight || this.containerEle.clientWidth,
+      // containerHeight: newWidth || (`${this.containerEle.clientHeight}px`),
+      containerWidth: newHeight || (`${this.containerEle.clientWidth}px`),
     })
   }
 
-  resizeHandler = null
   visibilityObserver = null
   visibilityPromise = null
 
   componentDidMount() {
-    this.resizeHandler = () => {
-      this.setState({
-        containerHeight: this.containerEle.clientHeight,
-        containerWidth: this.containerEle.clientWidth,
-      })
-    }
-    window.addEventListener('resize', this.resizeHandler)
+    // onresize is removed because it is not necessary
+    // when css comes for help.
+
+    // this.resizeHandler = () => {
+    //   this.setState({
+    //     containerHeight: this.containerEle.clientHeight,
+    //     containerWidth: this.containerEle.clientWidth,
+    //   })
+    // }
+    // window.addEventListener('resize', this.resizeHandler)
 
     if (this.props.lazy) {
       // a promise of visibility
@@ -225,7 +227,7 @@ class LazyBlurImage extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.resizeHandler)
+    // window.removeEventListener('resize', this.resizeHandler)
 
     if (this.props.lazy) {
       this.visibilityObserver.unobserve()
