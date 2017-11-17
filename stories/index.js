@@ -96,3 +96,17 @@ storiesOf(uF('LazyBlurImage'), module)
       </div>
     )
   )
+  .add('with blur shadow', () =>
+    (
+      <LazyBlurImage
+        thumbSource="http://bucket-1252761181.costj.myqcloud.com/desktop-mini.jpg"
+        source="http://bucket-1252761181.costj.myqcloud.com/desktop.jpg"
+        alt="hehe"
+        thumbAlt="hehe"
+        height="auto"
+        lazy
+        withBlurShadow
+      />
+    )
+  )
+

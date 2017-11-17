@@ -22,6 +22,9 @@ class LazyBlurImage extends Component {
     // loa
     lazy: PropTypes.bool,
 
+    // with blur shadow
+    withBlurShadow: PropTypes.bool,
+
     // event listeners
     onThumbImageLoad: PropTypes.func,
     onLoad: PropTypes.func,
@@ -50,6 +53,8 @@ class LazyBlurImage extends Component {
     imageStyle: {},
 
     lazy: false,
+
+    withBlurShadow: false,
 
     // classNames
     className: '',
@@ -139,7 +144,10 @@ class LazyBlurImage extends Component {
             width: '100%',
             height: 'auto',
 
-            visibility: this.state.imageLoaded ? 'hidden' : undefined,
+            // When real image is loaded, thumb can be hidden or
+            // become a blur shadow of real image, use `withBlurShadow`
+            // props to turn on this feature.
+            visibility: (!this.state.imageLoaded || this.props.withBlurShadow) ? undefined : 'hidden',
 
             filter: `blur(${parseInt(this.state.containerWidth, 10) / 20}px)`,
             // users style
@@ -149,7 +157,7 @@ class LazyBlurImage extends Component {
         />
         {
           this.state.thumbImageLoaded &&
-          <img
+          <img // this is real image
             ref={this.imageRef}
             src={source}
             alt={alt}
