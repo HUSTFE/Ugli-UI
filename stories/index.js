@@ -57,3 +57,42 @@ storiesOf(uF('LazyBlurImage'), module)
       </div>
     )
   )
+  .add('two with scroll bar', () =>
+    (
+      <div style={{ height: '300px', overflow: 'scroll' }}>
+        <h1>Scroll To See Lazy Load!</h1>
+        <div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+        </div>
+        <LazyBlurImage
+          thumbSource="http://bucket-1252761181.costj.myqcloud.com/desktop-mini.jpg"
+          source="http://bucket-1252761181.costj.myqcloud.com/desktop.jpg"
+          alt="hehe"
+          thumbAlt="hehe"
+          height="auto"
+          lazy
+        />
+      </div>
+    )
+  )
