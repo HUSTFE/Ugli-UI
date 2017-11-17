@@ -1,8 +1,3 @@
-/*
- * VisibilityObserver - JavaScript plugin to observe element's visibility
- * Author Faraway <hzylovelyl@gmail.com>
- */
-
 /* eslint-disable no-underscore-dangle */
 
 export function isVisibleInWindow(el) {
@@ -39,6 +34,15 @@ export function isVisibleInWindow(el) {
   )
 }
 
+/**
+ * ==============================================================================
+ * VisibilityObserver
+ * JavaScript plugin to observe element's visibility, compatible for IE9+
+ * Author Faraway <hzylovelyl@gmail.com>
+ * ==============================================================================
+ */
+
+// TODO: multi-element observe
 export default class VisibilityObserver {
   // point to the instance of native IntersectingObserver
   _nativeObserver = null
@@ -187,6 +191,7 @@ export default class VisibilityObserver {
       this._nativeObserver.unobserve(this._element)
     } else {
       // oh, fuck! no IntersectionObserver.
+      // the unobserve method will be override in observe method for convenience.
     }
   }
 }
