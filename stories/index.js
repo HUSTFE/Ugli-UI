@@ -8,6 +8,7 @@ import Spinner from '../src/components/react/Indicator'
 import Button from '../src/components/react/Button/index'
 import Swipe from '../src/components/react/Swiper'
 import Calendar from '../src/components/react/Calendar/index'
+import LazyBlurImage from '../src/components/react/LazyBlurImage'
 
 storiesOf('Indicator/Default(Spinner)', module)
   .add('default', () => <Spinner />)
@@ -25,3 +26,34 @@ storiesOf(uF('Swipe'), module)
 
 storiesOf(uF('Calendar'), module)
   .add('default', () => <Calendar />)
+
+storiesOf(uF('LazyBlurImage'), module)
+  .add('default', () =>
+    (<LazyBlurImage
+      thumbSource="http://bucket-1252761181.costj.myqcloud.com/desktop-mini.jpg"
+      source="http://bucket-1252761181.costj.myqcloud.com/desktop.jpg"
+      alt="hehe"
+      thumbAlt="hehe"
+      height="auto"
+    />)
+  )
+  .add('two', () =>
+    (
+      <div>
+        <LazyBlurImage
+          thumbSource="http://bucket-1252761181.costj.myqcloud.com/desktop-mini.jpg"
+          source="http://bucket-1252761181.costj.myqcloud.com/desktop.jpg"
+          alt="hehe"
+          thumbAlt="hehe"
+          height="auto"
+        />
+        <LazyBlurImage
+          thumbSource="http://bucket-1252761181.costj.myqcloud.com/desktop-mini.jpg"
+          source="http://bucket-1252761181.costj.myqcloud.com/desktop.jpg"
+          alt="hehe"
+          thumbAlt="hehe"
+          height="auto"
+        />
+      </div>
+    )
+  )
