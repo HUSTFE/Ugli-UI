@@ -2,13 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 class InfiniteScroller extends React.Component {
-  constructor() {
-    super()
-    const initialElements = React.Children.toArray(this.props.children)
-
-    this.state = {
-      elements: initialElements,
-    }
+  static propTypes = {
+    containerHeight: PropTypes.number,
+    elementHeight: PropTypes.number,
+    loadInfinite: PropTypes.func,
+    loadSpinner: PropTypes.func,
+    bottomToTop: PropTypes.bool,
+    className: PropTypes.string,
+    children: PropTypes.element,
   }
 
   static defaultProps = {
@@ -18,6 +19,16 @@ class InfiniteScroller extends React.Component {
     loadSpinner: () => {},
     className: '',
     children: null,
+    bottomToTop: false,
+  }
+
+  constructor(props) {
+    super(props)
+    const initialElements = React.Children.toArray(props.children)
+
+    this.state = {
+      elements: initialElements,
+    }
   }
 
   render() {
@@ -27,27 +38,20 @@ class InfiniteScroller extends React.Component {
       loadInfinite,
       loadSpinner,
       className,
+      bottomToTop,
     } = this.props
 
-    loadSpinner()
     loadInfinite()
     return (
       <div className={className} height={containerHeight}>
+        {bottomToTop && loadSpinner}
         {React.Children.map(this.state.elements, child => React.cloneElement(child, {
           height: elementHeight,
         }))}
+        {!bottomToTop && loadSpinner}
       </div>
     )
   }
-}
-
-InfiniteScroller.propTypes = {
-  containerHeight: PropTypes.number,
-  elementHeight: PropTypes.number,
-  loadInfinite: PropTypes.func,
-  loadSpinner: PropTypes.func,
-  className: PropTypes.string,
-  children: PropTypes.element,
 }
 
 export default InfiniteScroller
