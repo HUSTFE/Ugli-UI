@@ -146,7 +146,7 @@ class LazyBlurImage extends Component {
           style={{
             // Before thumb `onload`, set its size to 100% * auto
             // can make it fit just well in div wrapper.
-            width: '100%',
+            width: (!width && height) ? 'auto' : '100%',
             height: '100%',
 
             // When real image is loaded, thumb can be hidden or
@@ -170,7 +170,7 @@ class LazyBlurImage extends Component {
             style={{
               // Before thumb `onload`, set its size to 100% * auto
               // can make it fit just well in div wrapper.
-              width: '100%',
+              width: (!width && height) ? 'auto' : '100%',
               height: '100%',
 
               // use visibility to prevent non-working transition

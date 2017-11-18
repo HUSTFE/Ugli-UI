@@ -146,4 +146,28 @@ storiesOf(uF('LazyBlurImage'), module)
       />
     )
   )
+  .add('work with flexbox', () =>
+    (
+      <div>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <LazyBlurImage
+            thumbSource="http://bucket-1252761181.costj.myqcloud.com/desktop-mini.jpg"
+            source="http://bucket-1252761181.costj.myqcloud.com/desktop.jpg"
+            alt="hehe"
+            thumbAlt="hehe"
+            lazy
+            withBlurShadow
+            height="100px"
+            style={{ flexShrink: 0 }}
+          />
+          <div style={{ flexGrow: 1, backgroundColor: '#eeeeee' }} />
+        </div>
+        <h2>Bug!</h2>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <img src="http://bucket-1252761181.costj.myqcloud.com/desktop.jpg" alt="hehe" style={{ flexShrink: 0, height: '100px' }} />
+          <div style={{ flexGrow: 1, backgroundColor: '#eeeeee' }} />
+        </div>
+      </div>
+    )
+  )
 
