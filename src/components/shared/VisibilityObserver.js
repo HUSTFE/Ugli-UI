@@ -101,11 +101,21 @@ export default class VisibilityObserver {
     if (this._observed) {
       throw Error('You can only observe one element in a single instance now!')
     }
+
+    if (!element) {
+      throw TypeError('`observe` cannot run with an invalid element parameter.')
+    }
+
     element = (typeof element === 'string'
       ? document.querySelector(element)
       : element
     )
-    if (!element || !(element instanceof HTMLElement)) {
+
+    if (!element) {
+      throw TypeError('`observe` connot find any DOM object that matches you selector.')
+    }
+
+    if (!(element instanceof HTMLElement)) {
       throw TypeError('`observe` need an instance of HTMLElement or a selector as argument.')
     }
 
