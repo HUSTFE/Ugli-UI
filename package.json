@@ -13,7 +13,7 @@
       "js",
       "jsx"
     ],
-    "testEnvironment": "node",
+    "testEnvironment": "jsdom",
     "moduleNameMapper": {
       "^@shared[/](.+)": "<rootDir>/src/components/shared/$1",
       "^.+\\.sass$": "identity-obj-proxy",
