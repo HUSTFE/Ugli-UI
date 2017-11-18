@@ -128,6 +128,11 @@ class LazyBlurImage extends Component {
       ...props
     } = this.props
 
+    // let imageWidth
+    // let imageHeight
+
+    // only with a specified height
+
     return (
       <div // this is div wrapper
         ref={this.containerRef}
@@ -142,14 +147,14 @@ class LazyBlurImage extends Component {
             // Before thumb `onload`, set its size to 100% * auto
             // can make it fit just well in div wrapper.
             width: '100%',
-            height: 'auto',
+            height: '100%',
 
             // When real image is loaded, thumb can be hidden or
             // become a blur shadow of real image, use `withBlurShadow`
             // props to turn on this feature.
             visibility: (!this.state.imageLoaded || this.props.withBlurShadow) ? undefined : 'hidden',
 
-            filter: `blur(${parseInt(this.state.containerWidth, 10) / 20}px)`,
+            filter: `blur(${parseInt(this.state.containerWidth, 10) / 15}px)`,
             // users style
             ...props.thumbImageStyle,
           }}
@@ -166,14 +171,14 @@ class LazyBlurImage extends Component {
               // Before thumb `onload`, set its size to 100% * auto
               // can make it fit just well in div wrapper.
               width: '100%',
-              height: 'auto',
+              height: '100%',
 
               // use visibility to prevent non-working transition
               visibility: this.state.imageLoaded ? undefined : 'hidden',
 
               filter: this.state.imageLoaded
                 ? undefined
-                : `blur(${parseInt(this.state.containerWidth, 10) / 20}px)`,
+                : `blur(${parseInt(this.state.containerWidth, 10) / 15}px)`,
 
                 // users style
               ...props.imageStyle,
@@ -221,8 +226,8 @@ class LazyBlurImage extends Component {
             resolve()
           }
         })
-        this.visibilityObserver.observe(this.containerEle)
       })
+      this.visibilityObserver.observe(this.containerEle)
     }
   }
 

@@ -34,7 +34,6 @@ storiesOf(uF('LazyBlurImage'), module)
       source="http://bucket-1252761181.costj.myqcloud.com/desktop.jpg"
       alt="hehe"
       thumbAlt="hehe"
-      height="auto"
     />)
   )
   .add('two', () =>
@@ -45,14 +44,12 @@ storiesOf(uF('LazyBlurImage'), module)
           source="http://bucket-1252761181.costj.myqcloud.com/desktop.jpg"
           alt="hehe"
           thumbAlt="hehe"
-          height="auto"
         />
         <LazyBlurImage
           thumbSource="http://bucket-1252761181.costj.myqcloud.com/desktop-mini.jpg"
           source="http://bucket-1252761181.costj.myqcloud.com/desktop.jpg"
           alt="hehe"
           thumbAlt="hehe"
-          height="auto"
         />
       </div>
     )
@@ -90,7 +87,6 @@ storiesOf(uF('LazyBlurImage'), module)
           source="http://bucket-1252761181.costj.myqcloud.com/desktop.jpg"
           alt="hehe"
           thumbAlt="hehe"
-          height="auto"
           lazy
         />
       </div>
@@ -103,7 +99,48 @@ storiesOf(uF('LazyBlurImage'), module)
         source="http://bucket-1252761181.costj.myqcloud.com/desktop.jpg"
         alt="hehe"
         thumbAlt="hehe"
-        height="auto"
+        lazy
+        withBlurShadow
+      />
+    )
+  )
+  .add('with 20% width', () =>
+    (
+      <LazyBlurImage
+        thumbSource="http://bucket-1252761181.costj.myqcloud.com/desktop-mini.jpg"
+        source="http://bucket-1252761181.costj.myqcloud.com/desktop.jpg"
+        alt="hehe"
+        thumbAlt="hehe"
+        width="20%"
+        lazy
+        withBlurShadow
+      />
+    )
+  )
+  .add('with 50% height', () =>
+    (
+      <div style={{ height: '100px' }}>
+        <LazyBlurImage
+          thumbSource="http://bucket-1252761181.costj.myqcloud.com/desktop-mini.jpg"
+          source="http://bucket-1252761181.costj.myqcloud.com/desktop.jpg"
+          alt="hehe"
+          thumbAlt="hehe"
+          height="50%"
+          lazy
+          withBlurShadow
+        />
+      </div>
+    )
+  )
+  .add('with 100px height and 100px width', () =>
+    (
+      <LazyBlurImage
+        thumbSource="http://bucket-1252761181.costj.myqcloud.com/desktop-mini.jpg"
+        source="http://bucket-1252761181.costj.myqcloud.com/desktop.jpg"
+        alt="hehe"
+        thumbAlt="hehe"
+        width="100px"
+        height="100px"
         lazy
         withBlurShadow
       />

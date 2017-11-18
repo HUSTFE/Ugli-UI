@@ -17,5 +17,6 @@ describe('LazyBlurImage', () => {
     )
     const json = component.toJSON()
     expect(json).toMatchSnapshot()
+    // return component
   })
 })
