@@ -181,11 +181,11 @@ function Swiper(container, options = {}) {
 
       // this judgement is acceptable to people.
       const isValidSlide =
-        duration < 250 && // if slide duration is less than 250ms
-          (
-            Math.abs(delta.x) > 20 || // and if slide amt is greater than 20px
-            Math.abs(delta.x) > slideWidth / 2 // or if slide amt is greater than half the width
-          )
+        (
+          duration < 250 && // if slide duration is less than 250ms
+          Math.abs(delta.x) > 20 // and if slide amt is greater than 20px
+        ) ||
+        Math.abs(delta.x) > slideWidth / 2 // or if slide amt is greater than half the width
 
       // user accept continuous, so we allow swipe.
       // if (this.options.continuous) isPastBounds = false
@@ -209,7 +209,7 @@ function Swiper(container, options = {}) {
       const onTransitionEnd = (event) => {
         wrapper.style.transition = ''
         // call user's callback
-        this.options.transitionEnd.call(event, this.index)
+        this.options.transitionEnd.call(event, this.index, slides[this.index])
         wrapper.removeEventListener('transitionend', onTransitionEnd)
       }
       wrapper.addEventListener('transitionend', onTransitionEnd)
