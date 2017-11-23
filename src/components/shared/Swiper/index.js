@@ -230,6 +230,7 @@ export class Swiper {
         if (this._circle(index) === this._index) {
             return;
         }
+        const fromIndex = this._index;
         index = this._circle(index);
         let diff = index - this._index;
         const direction = Math.abs(diff) / diff;
@@ -244,6 +245,8 @@ export class Swiper {
             if (diff >= 0) {
                 this._slideToOnce(this._index + direction, speed, () => slide());
                 if (diff === 0) {
+                    const _slideDidChange = this._options.slideDidChange || (() => { });
+                    _slideDidChange(fromIndex, index);
                     callback.call(this, this._index);
                 }
             }
@@ -266,6 +269,7 @@ export class Swiper {
      * Destroy this slider.
      */
     destroy() {
+        this.stopAuto();
         this._wrapper.removeEventListener('touchstart', this._onTouchStart, false);
         this._wrapper.removeEventListener('touchmove', this._onTouchMove, false);
         this._wrapper.removeEventListener('touchend', this._onTouchEnd, false);

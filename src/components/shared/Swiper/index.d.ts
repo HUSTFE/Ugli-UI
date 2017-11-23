@@ -5,7 +5,7 @@ export interface ISwiperOptions {
     continuous?: boolean;
     disableScroll?: false;
     resistance?: number;
-    slideDidChange?(slideIndex: number): any;
+    slideDidChange?(fromSlideIndex: number, toSlideIndex: number): any;
 }
 export declare class Swiper {
     private _container;
