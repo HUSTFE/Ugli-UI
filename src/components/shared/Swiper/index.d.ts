@@ -1,6 +1,7 @@
 export interface ISwiperOptions {
     startSlideIndex?: number;
     speed?: number;
+    auto?: 0;
     continuous?: boolean;
     disableScroll?: false;
     resistance?: number;
@@ -20,6 +21,7 @@ export declare class Swiper {
     private _isPastingBounds;
     private _mousedown;
     private _isScrolling;
+    private _autoInterval;
     constructor(container: HTMLElement | string, options?: ISwiperOptions);
     /**
      * Slide the swiper to specified index.
@@ -36,9 +38,18 @@ export declare class Swiper {
      */
     nextSlide(): void;
     /**
-     * Destroy this slider
+     * Destroy this slider.
      */
     destroy(): void;
+    /**
+     * Start auto play.
+     * @param time
+     */
+    startAuto(time?: number): void;
+    /**
+     * Stop auto play.
+     */
+    stopAuto(): void;
     private _slideToOnce(index, speed, callback);
     private _onTouchStart;
     private _onTouchMove;

@@ -11,6 +11,7 @@ export class Swiper {
         this._isPastingBounds = false; // flag if current swipe is pasting bounds
         this._mousedown = false;
         this._isScrolling = false;
+        this._autoInterval = 0;
         this._onTouchStart = (e) => {
             if (e.touches.length === 1) {
                 this._start(e.touches[0].pageX, e.touches[0].pageY);
@@ -91,7 +92,7 @@ export class Swiper {
                 this._circle(this._index + 1),
             ];
             // Then we just need to deal with left, current, right slides.
-            this._translate(i2, 0, speed);
+            this._translate(i2, 0, speed, () => this.startAuto());
             if (this._currentTranslate[i1] * -slideWidth < 0) {
                 this._translate(i1, -slideWidth);
             }
@@ -121,9 +122,9 @@ export class Swiper {
             resistance: 0.5,
             speed: 300,
             startSlideIndex: 0,
-            // auto: 0,
+            auto: 2000,
             continuous: true,
-            // disableScroll: false,
+            disableScroll: false,
             // stopPropagation: false,
             shouldSlideChange: () => true,
             slideDidChange: () => undefined,
@@ -218,6 +219,7 @@ export class Swiper {
         this._wrapper.addEventListener('mousemove', this._onMouseMove, false);
         this._wrapper.addEventListener('mouseup', this._onMouseUp, false);
         this._wrapper.addEventListener('mouseout', this._onMouseOut, false);
+        this.startAuto();
     }
     /**
      * Slide the swiper to specified index.
@@ -261,7 +263,7 @@ export class Swiper {
         this.slideTo(this._circle(this._index + 1));
     }
     /**
-     * Destroy this slider
+     * Destroy this slider.
      */
     destroy() {
         this._wrapper.removeEventListener('touchstart', this._onTouchStart, false);
@@ -272,12 +274,36 @@ export class Swiper {
         this._wrapper.removeEventListener('mouseup', this._onMouseUp, false);
         this._wrapper.removeEventListener('mouseout', this._onMouseOut, false);
     }
+    /**
+     * Start auto play.
+     * @param time
+     */
+    startAuto(time) {
+        if (this._autoInterval) {
+            return;
+        }
+        const _time = this._options.auto || time || 0;
+        if (_time === 0) {
+            return;
+        }
+        this._autoInterval = setInterval(() => {
+            this.nextSlide();
+        }, _time);
+    }
+    /**
+     * Stop auto play.
+     */
+    stopAuto() {
+        clearInterval(this._autoInterval);
+        this._autoInterval = 0;
+    }
     _slideToOnce(index, speed, callback) {
         // if (index === this._index) {
         //   return
         // }
         let _callback = (currentIndex) => {
             callback(currentIndex);
+            this.startAuto();
             _callback = () => { };
         };
         // const diff: number = index - this._index
@@ -323,6 +349,7 @@ export class Swiper {
         this._currentTranslate[i3] = slideWidth;
     }
     _start(x, y) {
+        this.stopAuto();
         // we record this two values to calculate swipe speed.
         this._touchStartPosition = {
             x,
