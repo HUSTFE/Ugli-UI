@@ -1,9 +1,9 @@
 export interface ISwiperOptions {
     startSlideIndex?: number;
     speed?: number;
-    continuous?: true;
+    continuous?: boolean;
+    disableScroll?: false;
     resistance?: number;
-    shouldSlideChange?(slideIndex: number): boolean;
     slideDidChange?(slideIndex: number): any;
 }
 export declare class Swiper {
@@ -18,11 +18,39 @@ export declare class Swiper {
     private _touchStartTime;
     private _delta;
     private _isPastingBounds;
+    private _mousedown;
+    private _isScrolling;
     constructor(container: HTMLElement | string, options?: ISwiperOptions);
+    /**
+     * Slide the swiper to specified index.
+     * @param index
+     * @param callback
+     */
+    slideTo(index: number, callback?: (currentIndex: number) => void): void;
+    /**
+     * Slide the swiper to previous index.
+     */
+    preSlide(): void;
+    /**
+     * Slide the swiper to next index.
+     */
+    nextSlide(): void;
+    /**
+     * Destroy this slider
+     */
+    destroy(): void;
+    private _slideToOnce(index, speed, callback);
     private _onTouchStart;
     private _onTouchMove;
     private _onTouchEnd;
-    private _translate(index, translateValue, transition?);
+    private _onMouseDown;
+    private _onMouseMove;
+    private _onMouseUp;
+    private _onMouseOut;
+    private _start(x, y);
+    private _move(x, y, e);
+    private _end;
+    private _translate(index, translateValue, transition?, callback?);
     private _circle(index);
     /**
      * set current slide's index and slide to the specified slide.
