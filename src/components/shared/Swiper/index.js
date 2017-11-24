@@ -29,12 +29,7 @@ export class Swiper {
             }
         };
         this._onMouseDown = (e) => {
-            this._mousedown = true;
-            this._touchStartPosition = {
-                x: e.pageX,
-                y: e.pageY,
-            };
-            this._touchStartTime = Date.now();
+            this._start(e.pageX, e.pageY);
         };
         this._onMouseMove = (e) => {
             if (this._mousedown) {
@@ -122,7 +117,7 @@ export class Swiper {
             resistance: 0.5,
             speed: 300,
             startSlideIndex: 0,
-            auto: 2000,
+            auto: 0,
             continuous: true,
             disableScroll: false,
             // stopPropagation: false,
@@ -220,6 +215,9 @@ export class Swiper {
         this._wrapper.addEventListener('mouseup', this._onMouseUp, false);
         this._wrapper.addEventListener('mouseout', this._onMouseOut, false);
         this.startAuto();
+        // to avoid setInterval buffer
+        window.addEventListener('focus', () => this.startAuto());
+        window.addEventListener('blur', () => this.stopAuto());
     }
     /**
      * Slide the swiper to specified index.
@@ -230,8 +228,8 @@ export class Swiper {
         if (this._circle(index) === this._index) {
             return;
         }
-        const fromIndex = this._index;
         index = this._circle(index);
+        const fromIndex = this._index;
         let diff = index - this._index;
         const direction = Math.abs(diff) / diff;
         let speed = this._options.speed || 0;
