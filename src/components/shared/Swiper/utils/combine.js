@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  * Combine two object and return the combined object.
  * @param first
