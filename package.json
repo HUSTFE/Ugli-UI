@@ -26,15 +26,17 @@
     "react-dom": "^16.0.0"
   },
   "devDependencies": {
-    "yargs": "^10.0.3",
-    "chalk": "^2.3.0",
-    "art-template": "^4.12.2",
     "@storybook/addon-actions": "^3.2.14",
     "@storybook/addon-links": "^3.2.14",
     "@storybook/react": "^3.2.14",
+    "@storybook/addons": "^3.3.0",
+    "art-template": "^4.12.2",
+    "babel-core": "^6.26.0",
+    "babel-runtime": "^6.23.0",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "chalk": "^2.3.0",
     "css-loader": "^0.28.7",
     "eslint": "^4.10.0",
     "eslint-config-airbnb": "^16.1.0",
@@ -44,13 +46,14 @@
     "eslint-plugin-markdown": "^1.0.0-beta.6",
     "eslint-plugin-react": "^7.4.0",
     "extract-text-webpack-plugin": "^3.0.2",
-    "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
     "node-sass": "^4.6.0",
     "react-test-renderer": "^16.0.0",
+    "identity-obj-proxy": "^3.0.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.0",
-    "webpack": "^3.8.1"
+    "webpack": "^3.8.1",
+    "yargs": "^10.0.3"
   },
   "scripts": {
     "lint": "eslint src --ext '.js'",
