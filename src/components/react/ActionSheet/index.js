@@ -106,24 +106,42 @@ class ActionSheet extends Component {
             }),
             onTouchEnd: () => this.close(index),
           }
-          // todo: failed to add delayStyle
+          // todo(fadeOut): reverse delay time
           const delayStyle = {
-            transitionDelay: 100 * index,
-            WebkitTransitionDelay: 100 * index,
+            transitionDelay: `${100 * index}ms`,
+            WebkitTransitionDelay: `${100 * index}ms`,
           }
-          let bitem = (
+          let bItem = (
             <div {...itemProps} style={delayStyle}>
               {item}
             </div>
           )
           if (cancelButtonIndex === index) {
-            bitem = (
-              <div {...itemProps}>
+            // todo: cancle icon
+            bItem = (
+              <div {...itemProps} style={delayStyle}>
                 {item}
               </div>
             )
           }
-          return bitem
+          const bItemTransition = (
+            <CSSTransitionGroup
+              transitionName={{
+                enter: styles['list-enter'],
+                enterActive: styles['list-enter-active'],
+                leave: styles['list-leave'],
+                leaveActive: styles['list-leave-active'],
+                appear: styles['list-appear'],
+                appearActive: styles['list-appear-active'],
+              }}
+              transitionEnterTimeout={300}
+              transitionLeaveTimeout={300}
+              key={item}
+            >
+              { this.state.active ? bItem : null }
+            </CSSTransitionGroup>
+          )
+          return bItemTransition
         })}
       </div>
     )
@@ -144,20 +162,7 @@ class ActionSheet extends Component {
         >
           { this.state.active ? mask : null }
         </CSSTransitionGroup>
-        <CSSTransitionGroup
-          transitionName={{
-            enter: styles['list-enter'],
-            enterActive: styles['list-enter-active'],
-            leave: styles['list-leave'],
-            leaveActive: styles['list-leave-active'],
-            appear: styles['list-appear'],
-            appearActive: styles['list-appear-active'],
-          }}
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={300}
-        >
-          { this.state.active ? list : null }
-        </CSSTransitionGroup>
+        {list}
       </div>
     )
     return ReactDOM.createPortal(children, this.addContainer())
