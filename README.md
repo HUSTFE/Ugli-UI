@@ -9,3 +9,15 @@ Ugli-UI is a mobile UI component Library.
 npm run new react test
 
 ```
+## Start in development mode
+```bash
+yarn start
+```
+
+## Build for production
+
+```bash
+yarn build
+```
+
+You will get a production copy of Ugli-UI in './build' directory.
