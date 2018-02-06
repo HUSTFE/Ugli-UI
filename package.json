@@ -21,11 +21,11 @@
     }
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-transition-group": "^1.2.1",
-    "classnames": "^2.2.5"
+    "react-transition-group": "^1.2.1"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.14",
@@ -54,6 +54,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
     "node-sass": "^4.6.0",
+    "pre-commit": "^1.2.2",
     "react-test-renderer": "^16.0.0",
     "rollup": "^0.55.3",
     "rollup-plugin-alias": "^1.4.0",
@@ -85,5 +86,9 @@
         "NODE_ENV": "production"
       }
     }
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ]
 }
