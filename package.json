@@ -53,6 +53,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
+    "leasot": "^4.13.0",
     "node-sass": "^4.6.0",
     "pre-commit": "^1.2.2",
     "react-test-renderer": "^16.0.0",
@@ -76,7 +77,9 @@
     "storybook": "start-storybook -p 6006",
     "build": "better-npm-run build",
     "build-storybook": "build-storybook",
-    "new": "node ./scripts/createNew.js"
+    "new": "node ./scripts/createNew.js",
+    "what-todo": "leasot src/**/*.js",
+    "todo": "leasot src/**/*.js"
   },
   "betterScripts": {
     "build": {
@@ -90,6 +93,7 @@
   "pre-commit": [
     "lint",
     "test",
-    "build"
+    "build",
+    "todo"
   ]
 }
