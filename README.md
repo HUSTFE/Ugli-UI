@@ -6,7 +6,7 @@ Ugli-UI is a mobile UI component Library.
 
 ```bash
 # To create a component
-npm run new react test
+yarn new react test
 
 ```
 ## Start in development mode
