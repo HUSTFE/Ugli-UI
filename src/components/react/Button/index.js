@@ -5,6 +5,9 @@ import styles from '@style/Button/index.sass'
 import { warning } from '@shared/warning'
 import { computeSize } from '@shared/size'
 
+/* eslint-disable react/prefer-stateless-function */
+// TODO: fix this lint error by changing the eslint
+// configuration or rewrite the code.
 class Button extends Component {
   static propTypes = {
     color: PropTypes.string,
