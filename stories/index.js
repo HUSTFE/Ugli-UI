@@ -7,6 +7,7 @@ import { storiesOf } from '@storybook/react'
 import Spinner from '../src/components/react/Indicator'
 import Button from '../src/components/react/Button/index'
 import Calendar from '../src/components/react/Calendar/index'
+import Range from '../src/components/react/Range/index'
 
 storiesOf('Indicator/Default(Spinner)', module)
   .add('default', () => <Spinner />)
@@ -21,3 +22,6 @@ storiesOf(uF('Button'), module)
 
 storiesOf(uF('Calendar'), module)
   .add('default', () => <Calendar />)
+
+storiesOf(uF('Range'), module)
+  .add('default', () => <Range max={10} min={0} step={1} />)

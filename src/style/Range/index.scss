@@ -1,4 +1,4 @@
-$btn-round: 20px;
+$btn-round: 15px;
 
 .ugli-range {
   &-container {
@@ -11,19 +11,30 @@ $btn-round: 20px;
     width: $btn-round;
     height: $btn-round;
     border-radius: 50%;
-    background-color: linear-gradient(-45deg, #d8a3fd, #fbc8d4);
+    border: 1px solid transparent;
+    background: linear-gradient(-45deg, #d8a3fd, #fbc8d4);
   }
 
   &-middle {
     position: absolute;
-    left: 0;
+    left: $btn-round/2;
     top: 50%;
     transform: translateY(-50%);
   }
 
-  &-noncomplete {
+  &-btn.ugli-range-middle {
+    left: 0;
+  }
+
+  &-noncover {
     background-color: #666;
-    width: 100%;
-    height: 5px;
+    width: calc(100% - #{$btn-round} / 2);
+    height: 2px;
+  }
+
+  &-cover {
+    width: 0;
+    height: 8px;
+    background: linear-gradient(-90deg, #726fd4, #d8a3fd);
   }
 }

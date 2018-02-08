@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styles from '@style/Range/index.scss'
 
 const RangeBtn = ({ style = {}, onTouchStart, onTouchEnd, onTouchMove }) => {
   return (
     <div
-      className="ugli-range-btn ugli-range-middle"
+      className={`${styles['ugli-range-btn']} ${styles['ugli-range-middle']}`}
       style={style}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
