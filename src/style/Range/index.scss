@@ -11,8 +11,8 @@ $btn-round: 15px;
     width: $btn-round;
     height: $btn-round;
     border-radius: 50%;
-    border: 1px solid transparent;
-    background: linear-gradient(-45deg, #d8a3fd, #fbc8d4);
+    background: linear-gradient(-45deg, #fbc8d4 30%, #d8a3fd 70%);
+    z-index: 2;
   }
 
   &-middle {
@@ -34,7 +34,7 @@ $btn-round: 15px;
 
   &-cover {
     width: 0;
-    height: 8px;
-    background: linear-gradient(-90deg, #726fd4, #d8a3fd);
+    height: 4px;
+    background: linear-gradient(-90deg, #d8a3fd, #726fd4);
   }
 }
