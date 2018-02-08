@@ -1,0 +1,29 @@
+$btn-round: 20px;
+
+.ugli-range {
+  &-container {
+    position: relative;
+    width: 200px;
+    height: 40px;
+  }
+
+  &-btn {
+    width: $btn-round;
+    height: $btn-round;
+    border-radius: 50%;
+    background-color: linear-gradient(-45deg, #d8a3fd, #fbc8d4);
+  }
+
+  &-middle {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &-noncomplete {
+    background-color: #666;
+    width: 100%;
+    height: 5px;
+  }
+}
