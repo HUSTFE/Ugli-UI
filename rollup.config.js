@@ -12,7 +12,6 @@ import fs from 'fs'
 // The babel plugin will not load .babelrc by NODE_ENV.
 // We do it ourselves.
 const babelrc = JSON.parse(fs.readFileSync('.babelrc'))
-const packageJson = JSON.parse(fs.readFileSync('package.json'))
 
 export default {
   input: fs.existsSync('./rollup.entry.temp.js')
@@ -53,5 +52,6 @@ export default {
     commonjs(),
   ],
   // all dependencies will be regarded as external
-  external: Object.keys(packageJson.dependencies),
+  /* eslint-disable global-require */
+  external: Object.keys(require('./package.json').dependencies),
 }
