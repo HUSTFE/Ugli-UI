@@ -75,6 +75,7 @@
     "start": "start-storybook -p 6006",
     "storybook": "start-storybook -p 6006",
     "build": "better-npm-run build",
+    "build:release": "node ./scripts/build.js",
     "build-storybook": "build-storybook",
     "new": "node ./scripts/createNew.js"
   },
@@ -90,6 +91,6 @@
   "pre-commit": [
     "lint",
     "test",
-    "build"
+    "build:release"
   ]
 }
