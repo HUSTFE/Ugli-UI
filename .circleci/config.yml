@@ -35,6 +35,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
         
       # run tests!
+      - run: mkdir build
       - run: yarn lint
       - run: yarn test
       - run: yarn build:release
