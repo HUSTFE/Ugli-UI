@@ -28,7 +28,7 @@ module.exports = {
         cacheDirectory: true,
       },
     }, {
-      test: /\.sass$/,
+      test: /\.(sass|scss)$/,
       include: resolveApp('src/style'),
       use: ExtractTextPlugin.extract({
         fallback: 'style-loader',
@@ -51,7 +51,7 @@ module.exports = {
     modules: [
       'node_modules',
     ],
-    extensions: ['.js', '.jsx', '.sass'],
+    extensions: ['.js', '.jsx', '.sass', '.scss'],
     alias: {
       '@style': resolveApp('src/style'),
       '@shared': resolveApp('src/components/shared'),
