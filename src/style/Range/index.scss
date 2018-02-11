@@ -16,10 +16,15 @@ $btn-round: 15px;
   }
 
   &-middle {
+    display: inline-block;
     position: absolute;
     left: $btn-round/2;
     top: 50%;
     transform: translateY(-50%);
+  }
+
+  &-middle.vertical {
+    transform: translateX(-50%);
   }
 
   &-btn.ugli-range-middle {
@@ -28,7 +33,7 @@ $btn-round: 15px;
 
   &-noncover {
     background-color: #666;
-    width: calc(100% - #{$btn-round} / 2);
+    width: calc(100% - #{$btn-round});
     height: 2px;
   }
 
