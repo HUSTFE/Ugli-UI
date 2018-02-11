@@ -1,9 +1,9 @@
+/* eslint-disable */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import RangeBtn from './Btn'
 import throttle from './utils/throttle'
-
 import styles from '@style/Range/index.scss'
 
 class Range extends Component {
@@ -23,10 +23,10 @@ class Range extends Component {
     vertical: false,
     // 默认为min
     value: undefined,
-    onInit: function(){console.log()},
-    onSlideStart: function(e){console.log('touch start')},
-    onSlide: function(){},
-    onSlideEnd: function(e){console.log('touch end')},
+    onInit: function () { console.log() },
+    onSlideStart: function () { console.log('touch start') },
+    onSlide: function () {},
+    onSlideEnd: function () { console.log('touch end') },
   }
 
   constructor(props) {
@@ -39,9 +39,7 @@ class Range extends Component {
     this.max = max
     this.vertical = vertical
     this.state = {
-      offset: 0,
       maxOffset: 0,
-      value: value || min,
       // range 上下左右距离页面左、上的位置
       pos: {
         top: null,
@@ -53,7 +51,7 @@ class Range extends Component {
       touchPos: {
         x: null,
         y: null,
-      }
+      },
     }
 
     this.touchMoveHandler = this.touchMoveHandler.bind(this)
@@ -61,12 +59,11 @@ class Range extends Component {
 
   componentDidMount() {
     const { onInit, step, max, min, value = min, vertical } = this.props
-    this.offsetPx = this.range.clientWidth * step / (max - min)
+    this.offsetPx = (this.range.clientWidth * step) / (max - min)
     const offset = this.offsetPx * (value - min)
     this.offset = offset
     this.value = value
     const maxOffset = (this.max - this.min) * this.offsetPx
-    console.log(`clientW: ${this.range.clientWidth} offsetPx: ${this.offsetPx} offset: ${offset}`)
     const { top, left, bottom, right } = this.range.getBoundingClientRect()
 
     if (vertical) {
@@ -82,7 +79,7 @@ class Range extends Component {
         left,
         bottom,
         right,
-      }
+      },
     })
     onInit()
   }
@@ -92,7 +89,12 @@ class Range extends Component {
 
     if (this.state.pos.left && Math.abs(touchPos.x - this.offset - pos.left) >= this.offsetPx / 2) {
       const offset = Math.round((touchPos.x - pos.left) / this.offsetPx) * this.offsetPx
-      this.offset = offset < pos.right ? (offset < 0 ? 0 : offset) : maxOffset
+      const minOffset = offset < 0
+        ? 0
+        : offset
+      this.offset = offset < pos.right
+        ? minOffset
+        : maxOffset
       this.value = this.offsetToValue(this.offset)
 
       if (vertical) {
@@ -103,10 +105,14 @@ class Range extends Component {
     }
   }
 
+  onMount(fn) {
+    this.range.addEventListener('load', fn)
+  }
+
   touchHandler(e) {
     const { pageX: x, pageY: y } = e.touches[0]
 
-    this.setState({touchPos: {x, y}})
+    this.setState({ touchPos: { x, y } })
   }
 
   touchStartHandler(e) {
@@ -114,7 +120,7 @@ class Range extends Component {
     this.touchHandler(e)
   }
 
-  touchEndHandler(e) {
+  touchEndHandler() {
     this.props.onSlideEnd()
   }
 
@@ -124,22 +130,19 @@ class Range extends Component {
   }
 
   offsetToValue(offset) {
-    return offset / this.offsetPx + this.min
+    return (offset / this.offsetPx) + this.min
   }
 
   render() {
     const {
-      step,
-      onSlide,
-      onSlideEnd,
-      vertical
+      vertical,
     } = this.props
 
     return (
       <div
         className={styles['ugli-range-container']}
-        onTouchStart={(e) => this.touchStartHandler(e)}
-        onTouchEnd={(e) => this.touchEndHandler()}
+        onTouchStart={e => this.touchStartHandler(e)}
+        onTouchEnd={() => this.touchEndHandler()}
         onTouchMove={throttle(this.touchMoveHandler)}
       >
         <div
