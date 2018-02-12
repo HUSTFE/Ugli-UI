@@ -13,7 +13,7 @@ describe('throttle', () => {
 
     jest.runAllTimers()
 
-   expect(setTimeout).toHaveBeenCalledTimes(2)
+    expect(setTimeout).toHaveBeenCalledTimes(2)
     expect(callback).toHaveBeenCalledTimes(2)
   })
 })

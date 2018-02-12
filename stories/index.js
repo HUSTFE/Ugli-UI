@@ -6,7 +6,6 @@ import { storiesOf } from '@storybook/react'
 
 import Spinner from '../src/components/react/Indicator'
 import Button from '../src/components/react/Button/index'
-import Calendar from '../src/components/react/Calendar/index'
 
 storiesOf('Indicator/Default(Spinner)', module)
   .add('default', () => <Spinner />)
@@ -18,6 +17,3 @@ const uF = raw => `(UNFINISHED) ${raw}`
 
 storiesOf(uF('Button'), module)
   .add('default', () => <Button text="UNFINISHED Button" />)
-
-storiesOf(uF('Calendar'), module)
-  .add('default', () => <Calendar />)
