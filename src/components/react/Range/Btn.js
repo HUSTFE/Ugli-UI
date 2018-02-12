@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import styles from '@style/Range/index.scss'
+import { cx } from './index'
 
 class RangeBtn extends React.Component {
   static propTypes = {
@@ -22,7 +22,7 @@ class RangeBtn extends React.Component {
     return (
       <div
         ref={div => this.btn = div}
-        className={`${styles['ugli-range-btn']} ${styles['ugli-range-middle']}`}
+        className={cx('ugli-range-btn', 'ugli-range-middle')}
         style={style}
       />
     )

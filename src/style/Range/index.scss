@@ -13,6 +13,16 @@ $btn-round: 15px;
     border-radius: 50%;
     background: linear-gradient(-45deg, #fbc8d4 30%, #d8a3fd 70%);
     z-index: 2;
+    transition: width .3s ease-in-out, height .3s ease-in-out;
+
+    &.js-active {
+      width: $btn-round * 1.2;
+      height: $btn-round * 1.2;
+    }
+
+    &.ugli-range-middle {
+      left: 0;
+    }
   }
 
   &-middle {
@@ -27,8 +37,8 @@ $btn-round: 15px;
     transform: translateX(-50%);
   }
 
-  &-btn.ugli-range-middle {
-    left: 0;
+  &-middle.rtl {
+    right: $btn-round / 2;
   }
 
   &-noncover {

@@ -1,10 +1,13 @@
 /* eslint-disable */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames/bind'
 
 import RangeBtn from './Btn'
 import throttle from './utils/throttle'
 import styles from '@style/Range/index.scss'
+
+export const cx = classNames.bind(styles)
 
 class Range extends Component {
   static propTypes = {
@@ -13,6 +16,7 @@ class Range extends Component {
     onSlideStart: PropTypes.func,
     onSlideEnd: PropTypes.func,
     vertical: PropTypes.bool,
+    rtl: PropTypes.bool,
     max: PropTypes.number.isRequired,
     min: PropTypes.number.isRequired,
     value: PropTypes.number,
@@ -21,6 +25,7 @@ class Range extends Component {
 
   static defaultProps = {
     vertical: false,
+    rtl: false,
     // 默认为min
     value: undefined,
     onInit: function () { console.log() },
@@ -31,12 +36,14 @@ class Range extends Component {
 
   constructor(props) {
     super(props)
-    const { value, min, max, vertical } = props
+    const { min, max, vertical, rtl } = props
+    this.value = min
     this.offset = 0
     // 每一格偏移的px
     this.offsetPx = 0
     this.min = min
     this.max = max
+    this.rtl = rtl
     this.vertical = vertical
     this.state = {
       maxOffset: 0,
@@ -62,7 +69,6 @@ class Range extends Component {
     this.offsetPx = (this.range.clientWidth * step) / (max - min)
     const offset = this.offsetPx * (value - min)
     this.offset = offset
-    this.value = value
     const maxOffset = (this.max - this.min) * this.offsetPx
     const { top, left, bottom, right } = this.range.getBoundingClientRect()
 
@@ -105,10 +111,6 @@ class Range extends Component {
     }
   }
 
-  onMount(fn) {
-    this.range.addEventListener('load', fn)
-  }
-
   touchHandler(e) {
     const { pageX: x, pageY: y } = e.touches[0]
 
@@ -118,9 +120,11 @@ class Range extends Component {
   touchStartHandler(e) {
     this.props.onSlideStart()
     this.touchHandler(e)
+    this.rangeBtn.btn.classList.add(styles['js-active'])
   }
 
   touchEndHandler() {
+    this.rangeBtn.btn.classList.remove(styles['js-active'])
     this.props.onSlideEnd()
   }
 
@@ -140,22 +144,23 @@ class Range extends Component {
 
     return (
       <div
-        className={styles['ugli-range-container']}
+        className={cx('ugli-range-container')}
         onTouchStart={e => this.touchStartHandler(e)}
         onTouchEnd={() => this.touchEndHandler()}
         onTouchMove={throttle(this.touchMoveHandler)}
       >
         <div
           ref={nc => this.range = nc}
-          className={`${styles['ugli-range-noncover']} ${styles['ugli-range-middle']}`}
+          className={cx('ugli-range-noncover', 'ugli-range-middle')}
         />
         <RangeBtn
+          ref={btn => this.rangeBtn = btn}
           vertical={vertical}
           offset={this.offset}
         />
         <div
           ref={div => this.rangeCover = div}
-          className={`${styles['ugli-range-cover']} ${styles['ugli-range-middle']}`}
+          className={cx('ugli-range-cover', 'ugli-range-middle')}
         />
         <p>{this.value}</p>
       </div>
