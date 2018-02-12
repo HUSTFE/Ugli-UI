@@ -22,6 +22,11 @@ $btn-round: 15px;
 
     &.ugli-range-middle {
       left: 0;
+
+      &.rtl {
+        left: unset;
+        right: 0;
+      }
     }
   }
 
@@ -38,6 +43,7 @@ $btn-round: 15px;
   }
 
   &-middle.rtl {
+    left: unset;
     right: $btn-round / 2;
   }
 

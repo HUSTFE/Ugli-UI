@@ -17,12 +17,12 @@ class RangeBtn extends React.Component {
   }
 
   render() {
-    const { style = {} } = this.props
+    const { style = {}, rtl } = this.props
 
     return (
       <div
         ref={div => this.btn = div}
-        className={cx('ugli-range-btn', 'ugli-range-middle')}
+        className={cx('ugli-range-btn', 'ugli-range-middle', { rtl })}
         style={style}
       />
     )
