@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { cx } from './index'
+import { classes } from './index'
 
 class RangeBtn extends React.Component {
   static propTypes = {
@@ -9,7 +9,7 @@ class RangeBtn extends React.Component {
   }
 
   componentWillReceiveProps({ offset }) {
-    this.btn.style.transform = `translate(${offset}px, -50%)`
+    this.btn.style.transform = `-webkit-translate(${offset}px, -50%)`
   }
 
   render() {
@@ -18,7 +18,7 @@ class RangeBtn extends React.Component {
     return (
       <div
         ref={div => this.btn = div}
-        className={cx('ugli-range-btn', 'ugli-range-middle', { rtl })}
+        className={classes('ugli-range-btn', 'ugli-range-middle', { rtl })}
         style={style}
       />
     )

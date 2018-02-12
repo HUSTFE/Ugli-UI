@@ -7,7 +7,7 @@ import RangeBtn from './Btn'
 import throttle from './utils/throttle'
 import styles from '@style/Range/index.scss'
 
-export const cx = classNames.bind(styles)
+export const classes = classNames.bind(styles)
 
 class Range extends Component {
   static propTypes = {
@@ -28,10 +28,10 @@ class Range extends Component {
     rtl: false,
     // 默认为min
     value: undefined,
-    onInit: function () { console.log() },
-    onSlideStart: function () { console.log('touch start') },
-    onSlide: function () {},
-    onSlideEnd: function () { console.log('touch end') },
+    onInit() {},
+    onSlideStart() { console.log('touch start') },
+    onSlide() {},
+    onSlideEnd() { console.log('touch end') },
   }
 
   constructor(props) {
@@ -101,7 +101,6 @@ class Range extends Component {
   componentWillUpdate(nextProps, nextState) {
     const { pos, touchPos } = nextState
 
-    console.log(touchPos.x - pos.left)
     if (this.state.pos.left && Math.abs(touchPos.x - this.offset - pos.left) >= this.offsetPx / 2) {
       const offset = Math.round((touchPos.x - pos.left) / this.offsetPx) * this.offsetPx
       const minOffset = offset < 0
@@ -121,7 +120,7 @@ class Range extends Component {
 
   toRtl() {
     if (this.rtl) {
-      this.offset =  -this.offset
+      this.offset = -this.offset
     }
   }
 
@@ -145,18 +144,18 @@ class Range extends Component {
   }
 
   touchStartHandler(e) {
-    this.props.onSlideStart()
+    this.props.onSlideStart(this.value)
     this.touchHandler(e)
     this.rangeBtn.btn.classList.add(styles['js-active'])
   }
 
   touchEndHandler() {
     this.rangeBtn.btn.classList.remove(styles['js-active'])
-    this.props.onSlideEnd()
+    this.props.onSlideEnd(this.value)
   }
 
   touchMoveHandler(e) {
-    this.props.onSlide()
+    this.props.onSlide(this.value)
     this.touchHandler(e)
   }
 
@@ -170,14 +169,14 @@ class Range extends Component {
 
     return (
       <div
-        className={cx('ugli-range-container', { rtl, vertical })}
+        className={classes('ugli-range-container', { rtl, vertical })}
         onTouchStart={e => this.touchStartHandler(e)}
         onTouchEnd={() => this.touchEndHandler()}
         onTouchMove={throttle(this.touchMoveHandler)}
       >
         <div
           ref={nc => this.range = nc}
-          className={cx('ugli-range-noncover', 'ugli-range-middle', { rtl, vertical })}
+          className={classes('ugli-range-noncover', 'ugli-range-middle', { rtl, vertical })}
         />
         <RangeBtn
           ref={btn => this.rangeBtn = btn}
@@ -187,7 +186,7 @@ class Range extends Component {
         />
         <div
           ref={div => this.rangeCover = div}
-          className={cx('ugli-range-cover', 'ugli-range-middle', { rtl, vertical })}
+          className={classes('ugli-range-cover', 'ugli-range-middle', { rtl, vertical })}
         />
         <p>{this.value}</p>
       </div>

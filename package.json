@@ -16,7 +16,7 @@
     "testEnvironment": "jsdom",
     "moduleNameMapper": {
       "^@shared[/](.+)": "<rootDir>/src/components/shared/$1",
-      "^.+\\.sass$": "identity-obj-proxy",
+      "^.+\\.(sass|scss)$": "identity-obj-proxy",
       "^.+\\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/__mocks__/fileMock.js"
     }
   },
