@@ -51,6 +51,7 @@ console.log(chalk.green('Done!\n'))
 // write a new entry and build
 console.log(chalk.gray('Building ES package...'))
 const components = fs.readdirSync('./src/components/react')
+  .filter(comp => /^[a-zA-Z$_][a-zA-Z\d_]*$/.test(comp))
 const entryCode =
 `
 import { version } from './package.json'
