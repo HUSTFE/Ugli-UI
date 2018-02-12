@@ -36,7 +36,7 @@ export default {
     }),
     alias({
       // avoid this plugin adding .js ext. to our path.
-      resolve: [''],
+      resolve: ['.js', '.jsx', '.sass', '.scss'],
       '@style': path.resolve(__dirname, 'src/style'),
       '@shared': path.resolve(__dirname, 'src/components/shared'),
     }),
