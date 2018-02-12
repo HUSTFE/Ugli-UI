@@ -1,0 +1,63 @@
+$btn-round: 15px;
+$container-width: 200px;
+$container-height: 40px;
+
+.ugli-range {
+  &-container {
+    position: relative;
+    width: $container-width;
+    height: $container-height;
+    top: 100px;
+    &.vertical {
+      transform: rotate(-90deg);
+    }
+  }
+
+  &-btn {
+    width: $btn-round;
+    height: $btn-round;
+    border-radius: 50%;
+    background: linear-gradient(-45deg, #fbc8d4 30%, #d8a3fd 70%);
+    z-index: 2;
+    transition: width .3s ease-in-out, height .3s ease-in-out;
+
+    &.js-active {
+      width: $btn-round * 1.2;
+      height: $btn-round * 1.2;
+    }
+
+    &.ugli-range-middle {
+      left: 0;
+
+      &.rtl {
+        left: unset;
+        right: 0;
+      }
+    }
+  }
+
+  &-middle {
+    display: inline-block;
+    position: absolute;
+    left: $btn-round/2;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &-middle.rtl {
+    left: unset;
+    right: $btn-round / 2;
+  }
+
+  &-noncover {
+    background-color: #666;
+    width: calc(100% - #{$btn-round});
+    height: 2px;
+  }
+
+  &-cover {
+    width: 0;
+    height: 4px;
+    background: linear-gradient(-90deg, #d8a3fd, #726fd4);
+  }
+}
