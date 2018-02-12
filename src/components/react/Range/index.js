@@ -70,20 +70,27 @@ class Range extends Component {
     const offset = this.offsetPx * (value - min)
     this.offset = offset
     this.maxOffset = (this.max - this.min) * this.offsetPx
-    const { top, left, bottom, right } = this.range.getBoundingClientRect()
+    let { top, left, bottom, right } = this.range.getBoundingClientRect()
     // 从右往左设置负值即可
     this.toRtl()
+    this.rangeCover.style.width = `${offset}px`
+
+    if (rtl) {
+      left = -right
+    }
 
     if (vertical) {
-      this.rangeCover.style.height = `${offset}px`
-    } else {
-      this.rangeCover.style.width = `${offset}px`
+      left = -bottom
+    }
+
+    if (vertical && rtl) {
+      left = top
     }
 
     this.setState({
       pos: {
         top,
-        left: rtl ? -right : left,
+        left,
         bottom,
         right,
       },
@@ -92,25 +99,21 @@ class Range extends Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    const { pos, touchPos, vertical } = nextState
+    const { pos, touchPos } = nextState
 
+    console.log(touchPos.x - pos.left)
     if (this.state.pos.left && Math.abs(touchPos.x - this.offset - pos.left) >= this.offsetPx / 2) {
       const offset = Math.round((touchPos.x - pos.left) / this.offsetPx) * this.offsetPx
       const minOffset = offset < 0
         ? 0
         : offset
-      this.offset = offset < pos.right
+      this.offset = offset < this.maxOffset
         ? minOffset
         : this.maxOffset
 
       const absOffset = Math.abs(this.offset)
       this.value = this.offsetToValue(absOffset)
-
-      if (vertical) {
-        this.rangeCover.style.height = `${absOffset}px`
-      } else {
-        this.rangeCover.style.width = `${absOffset}px`
-      }
+      this.rangeCover.style.width = `${absOffset}px`
 
       this.toRtl()
     }
@@ -124,9 +127,21 @@ class Range extends Component {
 
   touchHandler(e) {
     const rtl = this.rtl
-    const { pageX: x, pageY: y } = e.touches[0]
+    const vertical = this.vertical
+    let { pageX: x, pageY: y } = e.touches[0]
+    if (rtl) {
+      x = -x
+    }
 
-    this.setState({ touchPos: { x: rtl ? -x : x, y } })
+    if (!rtl && vertical) {
+      [x, y] = [-y, x]
+    }
+
+    if (vertical && rtl) {
+      [x, y] = [y, x]
+    }
+
+    this.setState({ touchPos: { x, y } })
   }
 
   touchStartHandler(e) {
@@ -155,14 +170,14 @@ class Range extends Component {
 
     return (
       <div
-        className={cx('ugli-range-container', { rtl })}
+        className={cx('ugli-range-container', { rtl, vertical })}
         onTouchStart={e => this.touchStartHandler(e)}
         onTouchEnd={() => this.touchEndHandler()}
         onTouchMove={throttle(this.touchMoveHandler)}
       >
         <div
           ref={nc => this.range = nc}
-          className={cx('ugli-range-noncover', 'ugli-range-middle', { rtl })}
+          className={cx('ugli-range-noncover', 'ugli-range-middle', { rtl, vertical })}
         />
         <RangeBtn
           ref={btn => this.rangeBtn = btn}
@@ -172,7 +187,7 @@ class Range extends Component {
         />
         <div
           ref={div => this.rangeCover = div}
-          className={cx('ugli-range-cover', 'ugli-range-middle', { rtl })}
+          className={cx('ugli-range-cover', 'ugli-range-middle', { rtl, vertical })}
         />
         <p>{this.value}</p>
       </div>

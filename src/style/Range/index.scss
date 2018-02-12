@@ -1,10 +1,16 @@
 $btn-round: 15px;
+$container-width: 200px;
+$container-height: 40px;
 
 .ugli-range {
   &-container {
     position: relative;
-    width: 200px;
-    height: 40px;
+    width: $container-width;
+    height: $container-height;
+    top: 100px;
+    &.vertical {
+      transform: rotate(-90deg);
+    }
   }
 
   &-btn {
@@ -36,10 +42,6 @@ $btn-round: 15px;
     left: $btn-round/2;
     top: 50%;
     transform: translateY(-50%);
-  }
-
-  &-middle.vertical {
-    transform: translateX(-50%);
   }
 
   &-middle.rtl {

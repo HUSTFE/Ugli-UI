@@ -8,12 +8,8 @@ class RangeBtn extends React.Component {
     offset: PropTypes.number.isRequired,
   }
 
-  componentWillReceiveProps({ vertical, offset }) {
-    if (vertical) {
-      this.btn.style.transform = `translate(-50%, ${offset}px)`
-    } else {
-      this.btn.style.transform = `translate(${offset}px, -50%)`
-    }
+  componentWillReceiveProps({ offset }) {
+    this.btn.style.transform = `translate(${offset}px, -50%)`
   }
 
   render() {
