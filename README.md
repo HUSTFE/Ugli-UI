@@ -34,4 +34,4 @@ Currently this project is still in its early time and cannot be used in producti
 So there is no corresponding npm package available.
 
 ## Contribute
-If you are interested in this project, feel free to PR.
+If you are interested in this project, feel free to send PRs.
