@@ -143,18 +143,18 @@ class Range extends Component {
     this.setState({ touchPos: { x, y } })
   }
 
-  touchStartHandler(e) {
+  touchStartHandler = (e) => {
     this.props.onSlideStart(this.value)
     this.touchHandler(e)
     this.rangeBtn.btn.classList.add(styles['js-active'])
   }
 
-  touchEndHandler() {
+  touchEndHandler = () => {
     this.rangeBtn.btn.classList.remove(styles['js-active'])
     this.props.onSlideEnd(this.value)
   }
 
-  touchMoveHandler(e) {
+  touchMoveHandler = e => {
     this.props.onSlide(this.value)
     this.touchHandler(e)
   }
@@ -170,8 +170,8 @@ class Range extends Component {
     return (
       <div
         className={classes('ugli-range-container', { rtl, vertical })}
-        onTouchStart={e => this.touchStartHandler(e)}
-        onTouchEnd={() => this.touchEndHandler()}
+        onTouchStart={this.touchStartHandler}
+        onTouchEnd={this.touchEndHandler}
         onTouchMove={throttle(this.touchMoveHandler)}
       >
         <div
