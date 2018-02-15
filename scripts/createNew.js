@@ -7,6 +7,7 @@ const fs = require('fs')
 const path = require('path')
 const chalk = require('chalk')
 
+// do sth with msg consoled, formatted to '[√]/[×]say sth'
 const withLog = msg => (func) => {
   // console.log(`[-] ${msg}`)
   // TODO: handle promise
@@ -23,20 +24,32 @@ const withLog = msg => (func) => {
 
 const firstUpperCase = ([first, ...rest]) => first.toUpperCase() + rest.join('')
 const mkdir = p => fs.existsSync(p) || fs.mkdirSync(p)
-const write = object => i => o => fs.existsSync(o) || fs.writeFileSync(o, art(i, object))
+/*
+ * @params: template -> inputPath -> outputPath
+ * ouputPath DOESN'T exist -> end
+ * else -> create new file according to io path && template
+ */
+const write = template => i => o => fs.existsSync(o) || fs.writeFileSync(o, art(i, template))
+// 'foo' -> ['foo', 'foo']
+// ['foo', 'bar'] -> ['foo', 'bar']
 const readOneStringOrTwo = feed => (typeof feed === 'string' ? [feed, feed] : feed)
 
+// 'react', 'vue', etc...
 const type = yargs.argv._[0]
+// component name
 const name = firstUpperCase(yargs.argv._[1])
 
 const templateSrc = `./scripts/template/${type}`
 const config = JSON.parse(fs.readFileSync(`${templateSrc}/config.json`, 'utf8'))
 
 const render = c => (info) => {
+  // writeWith:: inputPath -> outputPath -> a
   const writeWith = write(info)
-  // we need function writeWith, so can't put this outside.
+  // create file group, return Boolean(success/failure)
   const createFileGroup = (inputDir, outputDir, template) => {
+    // resolve path
     const [iDirPath, oDirPath] = [inputDir, outputDir].map(rawPath => path.resolve(rawPath))
+    // create directory && files
     return withLog(`Dir: ${chalk.grey(oDirPath)}`)(() => mkdir(oDirPath))
       && template.reduce((acc, filename) => {
         const [iFile, oFile] = readOneStringOrTwo(filename)
@@ -46,6 +59,8 @@ const render = c => (info) => {
         )
       }, true)
   }
+  // create multiple groups of [directory, template]
+  // args include base path of input && output
   const createMulti = ([{ dir, template }, ...other], ...arg) => {
     const [iDir, oDir] = readOneStringOrTwo(dir)
     const [iBase, oBase] = arg
@@ -54,7 +69,7 @@ const render = c => (info) => {
     }
     return other.length ? createMulti(other, ...arg) : true
   }
-  // style template and output path
+  // create style files
   const [iDir, oDir] = [path.resolve('./scripts/template/'), path.resolve(`./src/style/${info.name}`)]
 
   createMulti(c.files, templateSrc, `${c.base}/${info.name}`)
@@ -63,6 +78,7 @@ const render = c => (info) => {
   )
 }
 
+// render all the stuffs
 withLog(
   'Main'
 )(() => render(config)({ name, type }))
