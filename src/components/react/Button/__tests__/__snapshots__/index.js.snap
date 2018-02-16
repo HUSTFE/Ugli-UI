@@ -1,16 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button snake spinner render without crash 1`] = `
+exports[`Button Basic button with text 1`] = `
 <button
   className="button"
   onClick={[Function]}
   style={
     Object {
-      "color": "aqua",
-      "height": "16px",
+      "background": "linear-gradient(-45deg, #fbc8d4 30%, #d8a3fd 70%)",
+      "fontSize": "16px",
     }
   }
 >
-  Button
+  <span>
+    Button
+  </span>
 </button>
 `;
