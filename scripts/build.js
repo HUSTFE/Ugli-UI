@@ -57,6 +57,7 @@ const entryCode =
 import { version } from './package.json'
 ${components.map(comp => `import ${comp} from './src/components/react/${comp}'`).join('\n')}
 
+export { version, ${components.join(', ')} }
 export default { version, ${components.join(', ')} }
 `
 
