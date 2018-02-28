@@ -43,6 +43,7 @@ delete packageJson.scripts
 delete packageJson.betterScripts
 delete packageJson.devDependencies
 delete packageJson['pre-commit']
+packageJson.name = packageJson.name.toLowerCase()
 packageJson.main = './dest/ugli-ui.js'
 packageJson.files = ['./dest/ugli-ui.js', './dest/ugli-ui.css']
 fs.writeFileSync(`${buildDirectory}/package.json`, JSON.stringify(packageJson))
@@ -57,6 +58,7 @@ const entryCode =
 import { version } from './package.json'
 ${components.map(comp => `import ${comp} from './src/components/react/${comp}'`).join('\n')}
 
+export { version, ${components.join(', ')} }
 export default { version, ${components.join(', ')} }
 `
 
