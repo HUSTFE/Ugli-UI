@@ -6,3 +6,7 @@ export default {
   version,
   Spinner,
 }
+export {
+  version,
+  Spinner,
+}
