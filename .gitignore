@@ -35,3 +35,7 @@ tags
 
 # JetBrains
 .idea/*
+.idea/
+
+.cache/
+*cache/
