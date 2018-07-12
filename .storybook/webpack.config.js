@@ -1,39 +1,28 @@
 const path = require('path');
-const fs = require('fs');
 
-const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
+module.exports = (c, a, config) => {
+  config.module.rules.push({
+    test: [/.tsx?$/, /\.ts$/],
+    use: 'ts-loader',
+    include: [path.resolve(__dirname, '../src')],
+  });
 
-module.exports = {
-  module: {
-    rules: [
+  config.module.rules.push({
+    test: /.less$/,
+    use: [
+      'style-loader',
       {
-        test: /\.(ts|tsx)$/,
-        include: [resolveApp('src/components/react'), resolveApp('stories')],
-        exclude: [resolveApp('src/__tests__')],
-        loader: require.resolve('ts-loader'),
+        loader: 'css-loader',
+        options: {
+          module: true,
+        },
       },
-      {
-        test: /\.less$/,
-        include: resolveApp('src/style'),
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              sourceMap: true,
-              importLoaders: 2,
-              localIdentName: '[name]__[local]___[hash:base64:5]',
-            },
-          },
-          'less-loader',
-        ],
-      },
+      'less-loader',
     ],
-  },
-  resolve: {
-    modules: ['node_modules'],
-    extensions: ['.ts', '.tsx', '.js', '.less'],
-  },
+    include: [path.resolve(__dirname, '../src')],
+  });
+
+  config.resolve.extensions.push('.ts', '.tsx');
+
+  return config;
 };

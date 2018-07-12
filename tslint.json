@@ -10,7 +10,8 @@
     "object-literal-sort-keys": false,
     "interface-name": false,
     "no-string-literal": false,
-    "jsx-wrap-multiline": false
+    "jsx-wrap-multiline": false,
+    "no-default-export": true
   },
   "rulesDirectory": []
 }
